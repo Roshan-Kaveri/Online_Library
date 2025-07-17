@@ -26,11 +26,13 @@ app.use((req, res, next) => {
 
 // ✅ Parse JSON before cors
 app.use(express.json());
+app.use(cors());
+
 app.use(
   cors({
-    origin: "*", // Allow all origins
-    methods: "GET,POST,PUT,DELETE,OPTIONS",
-    allowedHeaders: "Content-Type,Authorization",
+    origin: "https://readify.hmmbo.com",
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
