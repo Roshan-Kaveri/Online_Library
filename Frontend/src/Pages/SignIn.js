@@ -28,11 +28,14 @@ const SignIn = () => {
       return;
     }
     try {
-      const response = await fetch("http://localhost:5000/api/auth/signin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: username, password }),
-      });
+      const response = await fetch(
+        "http://online-library-backend-six.vercel.app/api/auth/signin",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: username, password }),
+        }
+      );
       const data = await response.json();
       setMessage(data.message);
 
@@ -277,7 +280,7 @@ const SignIn = () => {
                   <Button
                     variant="outline-secondary"
                     style={styles.socialButton}
-                    href="http://localhost:5000/api/auth/google"
+                    href="http://online-library-backend-six.vercel.app/api/auth/google"
                   >
                     <FcGoogle
                       style={{ color: "#4285F4", marginRight: "8px" }}

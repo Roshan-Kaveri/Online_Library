@@ -19,11 +19,14 @@ function Home() {
   const checkInAndUpdateStreak = useCallback(async (email) => {
     try {
       const today = new Date().toISOString().split("T")[0];
-      const response = await fetch(`http://localhost:5000/checkins`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, date: today }),
-      });
+      const response = await fetch(
+        `http://online-library-backend-six.vercel.app/checkins`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, date: today }),
+        }
+      );
 
       const data = await response.json();
       console.log("Check-in Response:", data);
@@ -40,14 +43,16 @@ function Home() {
   }, [checkInAndUpdateStreak]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/books/all")
+    fetch("http://online-library-backend-six.vercel.app/books/all")
       .then((res) => res.json())
       .then((data) => setBooks(data))
       .catch((err) => console.error("Error fetching top books:", err));
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/books/${selectedCategory}`)
+    fetch(
+      `http://online-library-backend-six.vercel.app/books/${selectedCategory}`
+    )
       .then((res) => res.json())
       .then((data) => setBooksByCategory(data))
       .catch((err) =>

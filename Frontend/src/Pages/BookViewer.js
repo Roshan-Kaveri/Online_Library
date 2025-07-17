@@ -31,8 +31,12 @@ const BookViewer = () => {
     const fetchData = async () => {
       try {
         const [bookRes, ownershipRes] = await Promise.all([
-          axios.get(`http://localhost:5000/bookc/${bookId}`),
-          axios.get(`http://localhost:5000/rzpay/check/${userId}/${bookId}`),
+          axios.get(
+            `http://online-library-backend-six.vercel.app/bookc/${bookId}`
+          ),
+          axios.get(
+            `http://online-library-backend-six.vercel.app/rzpay/check/${userId}/${bookId}`
+          ),
         ]);
 
         if (!ownershipRes.data.owns) {

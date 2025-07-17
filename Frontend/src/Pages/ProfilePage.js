@@ -33,7 +33,7 @@ const ProfilePage = () => {
   const fetchCheckIns = async (userEmail) => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/checkins/${userEmail}`
+        `http://online-library-backend-six.vercel.app/checkins/${userEmail}`
       );
       setCheckIns(res.data);
     } catch (error) {
@@ -98,7 +98,9 @@ const ProfilePage = () => {
     if (userId) {
       console.log("Fetching purchased books for userId:", userId);
       axios
-        .get(`http://localhost:5000/books/user-orders/${userId}`)
+        .get(
+          `http://online-library-backend-six.vercel.app/books/user-orders/${userId}`
+        )
         .then((response) => {
           console.log("Purchased books fetched:", response.data);
           setPurchasedBooks(response.data);
@@ -117,7 +119,9 @@ const ProfilePage = () => {
     if (userId) {
       console.log("Fetching wishlist for userId:", userId);
       axios
-        .get(`http://localhost:5000/wishlist/all/${userId}`)
+        .get(
+          `http://online-library-backend-six.vercel.app/wishlist/all/${userId}`
+        )
         .then((response) => {
           console.log("Wishlist books fetched:", response.data);
           setWishlistBooks(response.data);
@@ -132,7 +136,9 @@ const ProfilePage = () => {
     if (userId) {
       console.log("Fetching current reads for userId:", userId);
       axios
-        .get(`http://localhost:5000/currentread/all/${userId}`)
+        .get(
+          `http://online-library-backend-six.vercel.app/currentread/all/${userId}`
+        )
         .then((response) => {
           console.log("Current reads fetched:", response.data);
           setCurrentReads(response.data);
