@@ -19,7 +19,7 @@ const CheckInPage = () => {
   const fetchCheckIns = async (userEmail) => {
     try {
       const res = await axios.get(
-        `http://online-library-backend-six.vercel.app/checkins/${userEmail}`
+        `https://online-library-backend-six.vercel.app/checkins/${userEmail}`
       );
       setCheckIns(res.data);
     } catch (error) {

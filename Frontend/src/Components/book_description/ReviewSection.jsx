@@ -17,7 +17,7 @@ const ReviewSection = ({ bookId, reviews, setReviews }) => {
     };
 
     try {
-      const response = await fetch('http://online-library-backend-six.vercel.app/reviews/add', {
+      const response = await fetch('https://online-library-backend-six.vercel.app/reviews/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

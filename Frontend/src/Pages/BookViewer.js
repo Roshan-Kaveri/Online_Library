@@ -32,10 +32,10 @@ const BookViewer = () => {
       try {
         const [bookRes, ownershipRes] = await Promise.all([
           axios.get(
-            `http://online-library-backend-six.vercel.app/bookc/${bookId}`
+            `https://online-library-backend-six.vercel.app/bookc/${bookId}`
           ),
           axios.get(
-            `http://online-library-backend-six.vercel.app/rzpay/check/${userId}/${bookId}`
+            `https://online-library-backend-six.vercel.app/rzpay/check/${userId}/${bookId}`
           ),
         ]);
 

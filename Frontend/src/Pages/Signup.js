@@ -25,7 +25,7 @@ const Signup = () => {
     }
     try {
       const response = await fetch(
-        "http://online-library-backend-six.vercel.app/api/auth/signup",
+        "https://online-library-backend-six.vercel.app/api/auth/signup",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -280,7 +280,7 @@ const Signup = () => {
                   <Button
                     variant="outline-secondary"
                     style={styles.socialButton}
-                    href="http://online-library-backend-six.vercel.app/api/auth/google"
+                    href="https://online-library-backend-six.vercel.app/api/auth/google"
                   >
                     <FcGoogle
                       style={{ color: "#4285F4", marginRight: "8px" }}

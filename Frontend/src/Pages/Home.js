@@ -20,7 +20,7 @@ function Home() {
     try {
       const today = new Date().toISOString().split("T")[0];
       const response = await fetch(
-        `http://online-library-backend-six.vercel.app/checkins`,
+        `https://online-library-backend-six.vercel.app/checkins`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -43,7 +43,7 @@ function Home() {
   }, [checkInAndUpdateStreak]);
 
   useEffect(() => {
-    fetch("http://online-library-backend-six.vercel.app/books/all")
+    fetch("https://online-library-backend-six.vercel.app/books/all")
       .then((res) => res.json())
       .then((data) => setBooks(data))
       .catch((err) => console.error("Error fetching top books:", err));
@@ -51,7 +51,7 @@ function Home() {
 
   useEffect(() => {
     fetch(
-      `http://online-library-backend-six.vercel.app/books/${selectedCategory}`
+      `https://online-library-backend-six.vercel.app/books/${selectedCategory}`
     )
       .then((res) => res.json())
       .then((data) => setBooksByCategory(data))

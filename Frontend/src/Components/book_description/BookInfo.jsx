@@ -26,7 +26,7 @@ const BookReview = () => {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const res = await fetch(`http://online-library-backend-six.vercel.app/books/get/${id}`);
+        const res = await fetch(`https://online-library-backend-six.vercel.app/books/get/${id}`);
         const data = await res.json();
         setBook(data);
       } catch (err) {
@@ -38,7 +38,7 @@ const BookReview = () => {
 
     const fetchReviews = async () => {
       try {
-        const res = await fetch(`http://online-library-backend-six.vercel.app/reviews/get/${id}`);
+        const res = await fetch(`https://online-library-backend-six.vercel.app/reviews/get/${id}`);
         const data = await res.json();
         setReviews(data);
       } catch (err) {
@@ -49,7 +49,7 @@ const BookReview = () => {
 
     const checkOwnership = async () => {
       try {
-        const res = await fetch(`http://online-library-backend-six.vercel.app/rzpay/check/${userId}/${id}`);
+        const res = await fetch(`https://online-library-backend-six.vercel.app/rzpay/check/${userId}/${id}`);
         const data = await res.json();
         setOwnsBook(data.owns);
       } catch (err) {

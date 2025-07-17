@@ -33,7 +33,7 @@ const ProfilePage = () => {
   const fetchCheckIns = async (userEmail) => {
     try {
       const res = await axios.get(
-        `http://online-library-backend-six.vercel.app/checkins/${userEmail}`
+        `https://online-library-backend-six.vercel.app/checkins/${userEmail}`
       );
       setCheckIns(res.data);
     } catch (error) {
@@ -99,7 +99,7 @@ const ProfilePage = () => {
       console.log("Fetching purchased books for userId:", userId);
       axios
         .get(
-          `http://online-library-backend-six.vercel.app/books/user-orders/${userId}`
+          `https://online-library-backend-six.vercel.app/books/user-orders/${userId}`
         )
         .then((response) => {
           console.log("Purchased books fetched:", response.data);
@@ -120,7 +120,7 @@ const ProfilePage = () => {
       console.log("Fetching wishlist for userId:", userId);
       axios
         .get(
-          `http://online-library-backend-six.vercel.app/wishlist/all/${userId}`
+          `https://online-library-backend-six.vercel.app/wishlist/all/${userId}`
         )
         .then((response) => {
           console.log("Wishlist books fetched:", response.data);
@@ -137,7 +137,7 @@ const ProfilePage = () => {
       console.log("Fetching current reads for userId:", userId);
       axios
         .get(
-          `http://online-library-backend-six.vercel.app/currentread/all/${userId}`
+          `https://online-library-backend-six.vercel.app/currentread/all/${userId}`
         )
         .then((response) => {
           console.log("Current reads fetched:", response.data);

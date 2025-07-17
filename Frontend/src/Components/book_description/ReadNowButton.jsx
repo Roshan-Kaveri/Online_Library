@@ -8,7 +8,7 @@ const ReadNowButton = ({ userId, bookId }) => {
   
   const checkCurrentRead = async () => {
     try {
-      const res = await fetch(`http://online-library-backend-six.vercel.app/currentread/check/${userId}/${bookId}`);
+      const res = await fetch(`https://online-library-backend-six.vercel.app/currentread/check/${userId}/${bookId}`);
       const data = await res.json();
       
       setReading(data.read);
@@ -20,7 +20,7 @@ const ReadNowButton = ({ userId, bookId }) => {
   
   const startOrContinueReading = async () => {
     try {
-      const res = await fetch(`http://online-library-backend-six.vercel.app/currentread/toggle`, {
+      const res = await fetch(`https://online-library-backend-six.vercel.app/currentread/toggle`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, bookId }),
