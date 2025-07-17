@@ -26,18 +26,26 @@ app.use((req, res, next) => {
 
 // ✅ Parse JSON before cors
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "*", // Allow all origins
+    methods: "GET,POST,PUT,DELETE,OPTIONS",
+    allowedHeaders: "Content-Type,Authorization",
+  })
+);
 
 // ✅ Session & Passport setup
-app.use(session({
-  secret: process.env.SESSION_SECRET || "session_secret",
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    sameSite: "none", // for cross-site cookies
-    secure: true      // required for HTTPS
-  }
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "session_secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      sameSite: "none", // for cross-site cookies
+      secure: true, // required for HTTPS
+    },
+  })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -53,12 +61,13 @@ app.use("/checkins", CheckIn);
 app.use("/bookc", bookc);
 
 // ✅ MongoDB connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log("✅ MongoDB connected!"))
-.catch(err => console.error("❌ MongoDB connection error:", err));
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("✅ MongoDB connected!"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 // ✅ Start server
 const PORT = process.env.PORT || 5000;
