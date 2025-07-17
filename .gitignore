@@ -65,3 +65,6 @@ dump/
 # Ignore frontend build artifacts
 client/build/
 frontend/build/
+
+backend/.env
+Frontend/.env

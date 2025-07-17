@@ -5,22 +5,22 @@ import "./CheckInPage.css";
 
 const CheckInPage = () => {
   const [checkIns, setCheckIns] = useState({});
-  const [email, setEmail] = useState("");  
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
-    
-    const loggedInEmail = localStorage.getItem('userEmail');
+    const loggedInEmail = localStorage.getItem("userEmail");
     if (loggedInEmail) {
-    setEmail(loggedInEmail);
-    
+      setEmail(loggedInEmail);
+
       fetchCheckIns(loggedInEmail);
     }
   }, []);
 
   const fetchCheckIns = async (userEmail) => {
     try {
-      
-      const res = await axios.get(`https://readlybackend.vercel.app/checkins/${userEmail}`);
+      const res = await axios.get(
+        `http://localhost:5000/checkins/${userEmail}`
+      );
       setCheckIns(res.data);
     } catch (error) {
       console.error("Error fetching check-ins:", error);
@@ -41,14 +41,23 @@ const CheckInPage = () => {
     return streak;
   };
 
-  const daysInMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate();
+  const daysInMonth = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth() + 1,
+    0
+  ).getDate();
   const today = new Date();
   const calendarDays = Array.from({ length: daysInMonth }, (_, i) => {
     const day = i + 1;
-    const dateKey = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    const dateKey = `${today.getFullYear()}-${String(
+      today.getMonth() + 1
+    ).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
     const checkedIn = checkIns[dateKey];
     return (
-      <div key={day} className={`calendar-day ${checkedIn ? 'checked-in' : ''}`}>
+      <div
+        key={day}
+        className={`calendar-day ${checkedIn ? "checked-in" : ""}`}
+      >
         {day}
       </div>
     );
@@ -58,9 +67,7 @@ const CheckInPage = () => {
     <div className="check-in-page">
       <h1>📅 Daily Check-In</h1>
       <p>🔥 Current Streak: {calculateStreak()} days</p>
-      <div className="calendar-container">
-        {calendarDays}
-      </div>
+      <div className="calendar-container">{calendarDays}</div>
     </div>
   );
 };

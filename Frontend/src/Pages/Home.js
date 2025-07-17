@@ -18,39 +18,41 @@ function Home() {
 
   const checkInAndUpdateStreak = useCallback(async (email) => {
     try {
-      const today = new Date().toISOString().split('T')[0];
-      const response = await fetch(`https://readlybackend.vercel.app/checkins`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, date: today })
+      const today = new Date().toISOString().split("T")[0];
+      const response = await fetch(`http://localhost:5000/checkins`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, date: today }),
       });
 
       const data = await response.json();
-      console.log('Check-in Response:', data);
+      console.log("Check-in Response:", data);
     } catch (error) {
-      console.error('Error during check-in:', error);
+      console.error("Error during check-in:", error);
     }
   }, []);
 
   useEffect(() => {
-    const email = localStorage.getItem('userEmail');
+    const email = localStorage.getItem("userEmail");
     if (email) {
       checkInAndUpdateStreak(email);
     }
   }, [checkInAndUpdateStreak]);
 
   useEffect(() => {
-    fetch("https://readlybackend.vercel.app/books/all")
+    fetch("http://localhost:5000/books/all")
       .then((res) => res.json())
       .then((data) => setBooks(data))
       .catch((err) => console.error("Error fetching top books:", err));
   }, []);
 
   useEffect(() => {
-    fetch(`https://readlybackend.vercel.app/books/${selectedCategory}`)
+    fetch(`http://localhost:5000/books/${selectedCategory}`)
       .then((res) => res.json())
       .then((data) => setBooksByCategory(data))
-      .catch((err) => console.error(`Error fetching books for ${selectedCategory}:`, err));
+      .catch((err) =>
+        console.error(`Error fetching books for ${selectedCategory}:`, err)
+      );
   }, [selectedCategory]);
 
   const filteredBooks = searchQuery
@@ -62,7 +64,7 @@ function Home() {
     : booksByCategory;
 
   const handleBookClick = (bookId) => {
-    const email = localStorage.getItem('userEmail');
+    const email = localStorage.getItem("userEmail");
     if (email) {
       navigate(`/book/${bookId}`);
     } else {
@@ -72,12 +74,12 @@ function Home() {
 
   // Show Splash only once
   useEffect(() => {
-    const hasVisited = sessionStorage.getItem('hasVisited');
+    const hasVisited = sessionStorage.getItem("hasVisited");
     if (!hasVisited) {
       setShowSplash(true);
       setTimeout(() => {
         setShowSplash(false);
-        sessionStorage.setItem('hasVisited', 'true');
+        sessionStorage.setItem("hasVisited", "true");
       }, 2000);
     }
   }, []);
@@ -86,7 +88,11 @@ function Home() {
     <>
       {showSplash ? (
         <div className="splash-screen">
-          <img src="https://i.ibb.co/Nfvt492/Readly.png" alt="Readly Logo" className="splash-logo" />
+          <img
+            src="https://i.ibb.co/Nfvt492/Readly.png"
+            alt="Readly Logo"
+            className="splash-logo"
+          />
         </div>
       ) : (
         <>
@@ -125,21 +131,28 @@ function Home() {
                   </div>
 
                   <div className="mt-4">
-                    {["General", "Drama", "Horror", "Thriller", "Fantasy", "Romantic"].map(
-                      (category) => (
-                        <Button
-                          key={category}
-                          variant={selectedCategory === category ? "primary" : "dark"}
-                          className="mx-2"
-                          onClick={() => {
-                            setSelectedCategory(category);
-                            setSearchQuery("");
-                          }}
-                        >
-                          {category}
-                        </Button>
-                      )
-                    )}
+                    {[
+                      "General",
+                      "Drama",
+                      "Horror",
+                      "Thriller",
+                      "Fantasy",
+                      "Romantic",
+                    ].map((category) => (
+                      <Button
+                        key={category}
+                        variant={
+                          selectedCategory === category ? "primary" : "dark"
+                        }
+                        className="mx-2"
+                        onClick={() => {
+                          setSelectedCategory(category);
+                          setSearchQuery("");
+                        }}
+                      >
+                        {category}
+                      </Button>
+                    ))}
                   </div>
                 </>
               )}
